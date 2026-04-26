@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Clinical Trials | Ethyra Global{% endblock %}
+{% block main_class %}col-12{% endblock %}
+{% block main_style %}min-height: auto;{% endblock %}
+
+{% block content %}
+<section class="landing-hero py-6">
+    <div class="container py-5">
+        <div class="row align-items-center gx-5">
+            <div class="col-lg-7">
+                <span class="badge bg-white text-primary fw-semibold shadow-sm mb-3">Active Studies</span>
+                <h1 class="display-5 fw-bold lh-tight">Discover our current clinical trials.</h1>
+                <p class="lead text-secondary mb-4">Browse active and upcoming studies across therapeutic areas with dedicated trial support and patient engagement.</p>
+                <a href="/contact/" class="btn btn-primary btn-lg rounded-pill shadow-sm">Contact Our Team</a>
+            </div>
+            <div class="col-lg-5 mt-5 mt-lg-0">
+                <div class="p-5 rounded-5 shadow-lg bg-white">
+                    <h5 class="fw-semibold mb-3">Trial readiness</h5>
+                    <p class="text-muted">We maintain a pipeline of recruitable studies across cardiovascular, oncology, neurology, and more.</p>
+                    <div class="d-flex gap-3 align-items-center">
+                        <span class="badge bg-primary bg-opacity-15 text-primary">50+ trials</span>
+                        <span class="badge bg-success bg-opacity-15 text-success">Global reach</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-6">
+    <div class="row align-items-center mb-5">
+        <div class="col-md-4">
+            <select class="form-select text-muted mb-3">
+                <option>Status</option>
+                <option>Recruiting</option>
+                <option>Upcoming</option>
+                <option>Completed</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-select text-muted mb-3">
+                <option>Region</option>
+                <option>North America</option>
+                <option>Europe</option>
+                <option>Asia Pacific</option>
+            </select>
+        </div>
+        <div class="col-md-4 text-md-end">
+            <a href="/contact/" class="btn btn-outline-primary rounded-pill">Request Protocol Info</a>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="trial-card p-4 rounded-4 shadow-sm h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-primary bg-opacity-15 text-primary">Recruiting</span>
+                    <small class="text-muted">Boston</small>
+                </div>
+                <h5>Cardiovascular Outcomes</h5>
+                <p class="text-muted">A multi-site study focused on novel heart failure therapies.</p>
+                <a href="/contact/" class="stretched-link text-decoration-none text-primary fw-semibold">Request details</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="trial-card p-4 rounded-4 shadow-sm h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-secondary bg-opacity-15 text-secondary">Upcoming</span>
+                    <small class="text-muted">Berlin</small>
+                </div>
+                <h5>Oncology Biomarkers</h5>
+                <p class="text-muted">A precision-driven study supporting biomarker-led therapies.</p>
+                <a href="/contact/" class="stretched-link text-decoration-none text-primary fw-semibold">Request details</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="trial-card p-4 rounded-4 shadow-sm h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-success bg-opacity-15 text-success">Active</span>
+                    <small class="text-muted">Tokyo</small>
+                </div>
+                <h5>Neurology Outcomes</h5>
+                <p class="text-muted">Global patient engagement for neurology treatment evaluation.</p>
+                <a href="/contact/" class="stretched-link text-decoration-none text-primary fw-semibold">Request details</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

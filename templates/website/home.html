@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block title %}Ethyra Global | Clinical Research Excellence{% endblock %}
+{% block main_class %}col-12{% endblock %}
+{% block main_style %}min-height: auto;{% endblock %}
+
+{% block content %}
+<section id="home" class="landing-hero py-6">
+    <div class="container py-5">
+        <div class="row align-items-center gx-5">
+            <div class="col-lg-6">
+                <span class="badge bg-white text-primary fw-semibold shadow-sm mb-3">GCP Certified</span>
+                <h1 class="display-5 fw-bold lh-tight">Accelerating Clinical Trials with Precision & Care</h1>
+                <p class="lead text-secondary mb-4">Ethyra Global delivers full-spectrum clinical research services for sponsors, sites, and patients. We combine scientific rigor, patient-centric operations, and regulatory excellence to unlock better trial outcomes.</p>
+                <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
+                    <a href="/trials/" class="btn btn-primary btn-lg rounded-pill shadow-sm">Explore Trials</a>
+                    <a href="/contact/" class="btn btn-outline-primary btn-lg rounded-pill">Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="hero-card rounded-5 shadow-lg overflow-hidden position-relative">
+                    <div class="hero-image-placeholder d-flex align-items-center justify-content-center text-white">
+                        <div>
+                            <div class="fs-1 mb-2"><i class="bi bi-heart-pulse"></i></div>
+                            <div class="h5 fw-semibold">Clinical Research</div>
+                            <p class="mb-0 text-white-75">Medical insights meet premium trial execution.</p>
+                        </div>
+                    </div>
+                    <div class="hero-details p-4 bg-white">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h5 class="mb-1">Patient-first studies</h5>
+                                <p class="text-muted mb-0">Modern operations, precise delivery.</p>
+                            </div>
+                            <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary">Trusted by sites globally</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 text-center">
+        <div class="col">
+            <div class="stat-card p-4 rounded-4 shadow-sm h-100">
+                <div class="fs-1 text-primary mb-2">50+</div>
+                <div class="fw-semibold">Active Trials</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="stat-card p-4 rounded-4 shadow-sm h-100">
+                <div class="fs-1 text-primary mb-2">10,000+</div>
+                <div class="fw-semibold">Patients Recruited</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="stat-card p-4 rounded-4 shadow-sm h-100">
+                <div class="fs-1 text-primary mb-2">25+</div>
+                <div class="fw-semibold">Therapeutic Areas</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="stat-card p-4 rounded-4 shadow-sm h-100">
+                <div class="fs-1 text-primary mb-2">100%</div>
+                <div class="fw-semibold">GCP Compliance</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="container py-6">
+    <div class="row justify-content-center text-center mb-5">
+        <div class="col-xl-8">
+            <h2 class="fw-bold">Full-Spectrum Clinical Research</h2>
+            <p class="text-muted">Integrated services designed to support every study phase, from feasibility to final submission.</p>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6 col-xl-3">
+            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                <div class="icon-wrapper mb-3"><i class="bi bi-building-up"></i></div>
+                <h5>Site Management</h5>
+                <p class="text-muted">Operational leadership on site activation, monitoring, and performance optimization.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                <div class="icon-wrapper mb-3"><i class="bi bi-people-fill"></i></div>
+                <h5>Patient Recruitment</h5>
+                <p class="text-muted">Targeted outreach and engagement strategies to reach more eligible participants faster.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                <div class="icon-wrapper mb-3"><i class="bi bi-shield-lock-fill"></i></div>
+                <h5>Regulatory Compliance</h5>
+                <p class="text-muted">Creative regulatory support backed by global GCP standards and quality systems.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                <div class="icon-wrapper mb-3"><i class="bi bi-journal-text"></i></div>
+                <h5>Data Management</h5>
+                <p class="text-muted">Accurate data operations, analytics readiness, and secure reporting workflows.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="clinical-trials" class="container py-6">
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-8">
+            <h2 class="fw-bold">Available Clinical Trials</h2>
+            <p class="text-muted">Explore a selection of active studies across therapeutic areas and global sites.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+            <div class="d-inline-flex gap-2">
+                <select class="form-select form-select-sm text-muted">
+                    <option>Status</option>
+                    <option>Recruiting</option>
+                    <option>Upcoming</option>
+                    <option>Completed</option>
+                </select>
+                <select class="form-select form-select-sm text-muted">
+                    <option>Location</option>
+                    <option>North America</option>
+                    <option>Europe</option>
+                    <option>Asia Pacific</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="trial-card p-4 rounded-4 shadow-sm h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-primary bg-opacity-15 text-primary">Recruiting</span>
+                    <small class="text-muted">Boston</small>
+                </div>
+                <h5>Cardiovascular Safety Study</h5>
+                <p class="text-muted">A multi-site study evaluating novel therapies for heart failure and patient outcomes.</p>
+                <a href="#" class="stretched-link text-decoration-none text-primary fw-semibold">Learn more</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="trial-card p-4 rounded-4 shadow-sm h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-secondary bg-opacity-15 text-secondary">Upcoming</span>
+                    <small class="text-muted">Berlin</small>
+                </div>
+                <h5>Oncology Biomarker Study</h5>
+                <p class="text-muted">Precision recruitment and biomarker-driven protocol design for oncology research.</p>
+                <a href="#" class="stretched-link text-decoration-none text-primary fw-semibold">Learn more</a>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="trial-card p-4 rounded-4 shadow-sm h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-success bg-opacity-15 text-success">Active</span>
+                    <small class="text-muted">Tokyo</small>
+                </div>
+                <h5>Neurology Outcomes Program</h5>
+                <p class="text-muted">Global patient engagement and site support for neurology treatment evaluation.</p>
+                <a href="#" class="stretched-link text-decoration-none text-primary fw-semibold">Learn more</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        <a href="#" class="btn btn-outline-primary btn-lg rounded-pill">View All Trials</a>
+    </div>
+</section>
+
+<section id="about" class="container py-6">
+    <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+            <h2 class="fw-bold">Why Choose Ethyra Global?</h2>
+            <p class="text-muted">We blend clinical strategy, patient-first execution, and trusted compliance to help sponsors move studies forward with confidence.</p>
+        </div>
+        <div class="col-lg-6">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="choice-card p-4 rounded-4 shadow-sm h-100">
+                        <div class="icon-circle mb-3"><i class="bi bi-award-fill"></i></div>
+                        <h6>GCP Excellence</h6>
+                        <p class="text-muted small mb-0">Complete Good Clinical Practice alignment.</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="choice-card p-4 rounded-4 shadow-sm h-100">
+                        <div class="icon-circle mb-3"><i class="bi bi-people-fill"></i></div>
+                        <h6>Patient Centric</h6>
+                        <p class="text-muted small mb-0">Engagement strategies built around real patients.</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="choice-card p-4 rounded-4 shadow-sm h-100">
+                        <div class="icon-circle mb-3"><i class="bi bi-file-earmark-text-fill"></i></div>
+                        <h6>Regulatory Ready</h6>
+                        <p class="text-muted small mb-0">Documentation and compliance with every submission.</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="choice-card p-4 rounded-4 shadow-sm h-100">
+                        <div class="icon-circle mb-3"><i class="bi bi-bar-chart-line-fill"></i></div>
+                        <h6>Data Powered</h6>
+                        <p class="text-muted small mb-0">Analytics-driven trial performance insights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="container py-6">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 text-center">
+            <div class="contact-card p-5 rounded-5 shadow-lg bg-primary text-white">
+                <h3 class="fw-bold">Ready to accelerate your next study?</h3>
+                <p class="mb-4">Connect with Ethyra Global for premium clinical trial partnerships, site support, and patient recruitment.</p>
+                <a href="mailto:hello@ethyraglobal.com" class="btn btn-light btn-lg rounded-pill">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

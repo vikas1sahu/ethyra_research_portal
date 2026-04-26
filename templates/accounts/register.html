@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Register - EthyraTrials{% endblock %}
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header"><h4>Create account</h4></div>
+            <div class="card-body">
+                <form method="post">{% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {% for field in form %}
+                        <div class="mb-3">{{ field.label_tag }}{{ field }}{{ field.errors }}</div>
+                    {% endfor %}
+                    <button class="btn btn-success w-100">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

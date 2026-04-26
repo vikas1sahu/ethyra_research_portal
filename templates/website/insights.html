@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Insights | Ethyra Global{% endblock %}
+{% block main_class %}col-12{% endblock %}
+{% block main_style %}min-height: auto;{% endblock %}
+
+{% block content %}
+<section class="landing-hero py-6">
+    <div class="container py-5">
+        <div class="row align-items-center gx-5">
+            <div class="col-lg-7">
+                <span class="badge bg-white text-primary fw-semibold shadow-sm mb-3">Research Insights</span>
+                <h1 class="display-5 fw-bold lh-tight">Latest thinking in clinical research and trial strategy.</h1>
+                <p class="lead text-secondary mb-4">Explore expert perspectives, study trends, and operational best practices from the Ethyra Global team.</p>
+                <a href="/about/" class="btn btn-primary btn-lg rounded-pill shadow-sm">Learn More</a>
+            </div>
+            <div class="col-lg-5 mt-5 mt-lg-0">
+                <div class="p-5 rounded-5 shadow-lg bg-white">
+                    <h5 class="fw-semibold mb-3">Featured content</h5>
+                    <p class="text-muted">Thought leadership for sponsors, investigators, and research operations teams.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-6">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="p-4 rounded-4 shadow-sm bg-white h-100">
+                <h5>Optimizing Patient Retention in Trials</h5>
+                <p class="text-muted">Strategies for enhancing engagement and lowering dropout rates.</p>
+                <a href="/contact/" class="text-primary fw-semibold">Read article</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 rounded-4 shadow-sm bg-white h-100">
+                <h5>How GCP Shapes Global Study Quality</h5>
+                <p class="text-muted">A practical guide to compliance, oversight, and audit readiness.</p>
+                <a href="/contact/" class="text-primary fw-semibold">Read article</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

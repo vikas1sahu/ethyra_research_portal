@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Studies - EthyraTrials{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Studies</h2>
+    <a class="btn btn-primary" href="{% url 'studies:create' %}">New study</a>
+</div>
+<form class="row g-3 mb-4 ajax-search-form" method="get" action="{% url 'studies:list' %}" data-target="#study-table">
+    <div class="col-md-4"><input class="form-control" name="search" placeholder="Search title" value="{{ request.GET.search }}"></div>
+    <div class="col-md-3">
+        <select class="form-select" name="status">
+            <option value="">Any status</option>
+            <option value="Active" {% if request.GET.status == 'Active' %}selected{% endif %}>Active</option>
+            <option value="Completed" {% if request.GET.status == 'Completed' %}selected{% endif %}>Completed</option>
+            <option value="Paused" {% if request.GET.status == 'Paused' %}selected{% endif %}>Paused</option>
+        </select>
+    </div>
+    <div class="col-auto"><button class="btn btn-outline-secondary">Filter</button></div>
+    <div class="col-auto"><a class="btn btn-link" href="{% url 'studies:list' %}">Reset</a></div>
+</form>
+<div id="study-table">
+    {% include 'studies/_table.html' %}
+</div>
+{% endblock %}

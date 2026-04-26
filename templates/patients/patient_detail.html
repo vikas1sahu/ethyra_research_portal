@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ object.name }} - EthyraTrials{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div><h2>{{ object.name }}</h2><p class="text-muted">{{ object.condition }} | {{ object.status }}</p></div>
+    <div>
+        <a class="btn btn-outline-secondary" href="{% url 'patients:edit' object.pk %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'patients:delete' object.pk %}">Delete</a>
+    </div>
+</div>
+<div class="row g-4">
+    <div class="col-md-6"><div class="card shadow-sm p-3"><strong>Age:</strong> {{ object.age }}</div></div>
+    <div class="col-md-6"><div class="card shadow-sm p-3"><strong>Study:</strong> {{ object.study.title }}</div></div>
+</div>
+{% endblock %}

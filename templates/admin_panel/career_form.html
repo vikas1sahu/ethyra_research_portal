@@ -1,0 +1,48 @@
+{% extends 'admin_panel/admin_base.html' %}
+
+{% block page_title %}{% if object %}Edit Career{% else %}Add Career{% endif %}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0">
+                <h5 class="mb-0">{% if object %}Edit Career Posting{% else %}Add New Career Posting{% endif %}</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">Title</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.location.id_for_label }}" class="form-label">Location</label>
+                            {{ form.location }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.is_active.id_for_label }}" class="form-label">Status</label>
+                            {{ form.is_active }}
+                        </div>
+                        <div class="col-12">
+                            <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="col-12">
+                            <label for="{{ form.requirements.id_for_label }}" class="form-label">Requirements</label>
+                            {{ form.requirements }}
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            {% if object %}Update Career{% else %}Create Career{% endif %}
+                        </button>
+                        <a href="{% url 'admin_panel:careers_list' %}" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

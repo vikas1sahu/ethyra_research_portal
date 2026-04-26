@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - EthyraTrials{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2>Dashboard</h2>
+        <p class="text-muted">Welcome back, {{ user.name }}.</p>
+    </div>
+</div>
+<div class="row g-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card shadow-sm p-3">
+            <h6>Total studies</h6>
+            <h2>{{ total_studies }}</h2>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card shadow-sm p-3">
+            <h6>Total patients</h6>
+            <h2>{{ total_patients }}</h2>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card shadow-sm p-3">
+            <canvas id="statusChart"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card shadow-sm p-3">
+            <h5>Recent notifications</h5>
+            <ul class="list-group list-group-flush">
+                {% for note in recent_notifications %}
+                    <li class="list-group-item">{{ note.title }} <small class="text-muted">{{ note.created_at|date:'M d, Y H:i' }}</small></li>
+                {% empty %}
+                    <li class="list-group-item">No notifications yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card shadow-sm p-3">
+            <h5>Recent activity</h5>
+            <ul class="list-group list-group-flush">
+                {% for activity in recent_activity %}
+                    <li class="list-group-item">
+                        {{ activity.action }} by {% if activity.actor %}{{ activity.actor.name }}{% else %}System{% endif %}
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No recent activity.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_scripts %}
+<script>
+const chartCtx = document.getElementById('statusChart');
+if (chartCtx) {
+    new Chart(chartCtx, {
+        type: 'doughnut',
+        data: {
+            labels: {{ chart_labels|safe }},
+            datasets: [{
+                data: {{ chart_data|safe }},
+                backgroundColor: ['#0d6efd', '#198754', '#ffc107'],
+            }],
+        },
+    });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact | Ethyra Global{% endblock %}
+{% block main_class %}col-12{% endblock %}
+{% block main_style %}min-height: auto;{% endblock %}
+
+{% block content %}
+<section class="landing-hero py-6">
+    <div class="container py-5">
+        <div class="row align-items-center gx-5">
+            <div class="col-lg-7">
+                <span class="badge bg-white text-primary fw-semibold shadow-sm mb-3">Get in touch</span>
+                <h1 class="display-5 fw-bold lh-tight">Contact Ethyra Global for partnership and trial support.</h1>
+                <p class="lead text-secondary mb-4">Reach out to discuss clinical trial strategy, patient recruitment, or study operations.</p>
+                <a href="mailto:hello@ethyraglobal.com" class="btn btn-primary btn-lg rounded-pill shadow-sm">Email Us</a>
+            </div>
+            <div class="col-lg-5 mt-5 mt-lg-0">
+                <div class="p-5 rounded-5 shadow-lg bg-white">
+                    <h5 class="fw-semibold mb-3">Contact details</h5>
+                    <p class="text-muted mb-2"><strong>Address</strong><br>112 Research Avenue, Boston, MA</p>
+                    <p class="text-muted mb-2"><strong>Email</strong><br>hello@ethyraglobal.com</p>
+                    <p class="text-muted"><strong>Phone</strong><br>+1 (800) 555-0190</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-6">
+    <div class="row g-4 justify-content-center">
+        <div class="col-xl-8">
+            <div class="p-5 rounded-5 shadow-sm bg-white">
+                <h5 class="fw-bold mb-3">Request a consultation</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">{{ form.name }}</div>
+                        <div class="col-md-6">{{ form.email }}</div>
+                        <div class="col-12">{{ form.subject }}</div>
+                        <div class="col-12">{{ form.message }}</div>
+                        <div class="col-12 text-end"><button type="submit" class="btn btn-primary btn-lg rounded-pill">Submit inquiry</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

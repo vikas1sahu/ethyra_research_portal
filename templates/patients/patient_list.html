@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Patients - EthyraTrials{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Patients</h2>
+    <a class="btn btn-primary" href="{% url 'patients:create' %}">New patient</a>
+</div>
+<form class="row g-3 mb-4 ajax-search-form" method="get" action="{% url 'patients:list' %}" data-target="#patient-table">
+    <div class="col-md-3"><input class="form-control" name="search" placeholder="Search name" value="{{ request.GET.search }}"></div>
+    <div class="col-md-2">
+        <select class="form-select" name="gender">
+            <option value="">Gender</option>
+            <option value="Female" {% if request.GET.gender == 'Female' %}selected{% endif %}>Female</option>
+            <option value="Male" {% if request.GET.gender == 'Male' %}selected{% endif %}>Male</option>
+            <option value="Other" {% if request.GET.gender == 'Other' %}selected{% endif %}>Other</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select class="form-select" name="status">
+            <option value="">Status</option>
+            <option value="Enrolled" {% if request.GET.status == 'Enrolled' %}selected{% endif %}>Enrolled</option>
+            <option value="Completed" {% if request.GET.status == 'Completed' %}selected{% endif %}>Completed</option>
+            <option value="Withdrawn" {% if request.GET.status == 'Withdrawn' %}selected{% endif %}>Withdrawn</option>
+        </select>
+    </div>
+    <div class="col-md-2"><button class="btn btn-outline-secondary">Filter</button></div>
+    <div class="col-md-1"><a class="btn btn-link" href="{% url 'patients:list' %}">Reset</a></div>
+</form>
+<div id="patient-table">
+    {% include 'patients/_table.html' %}
+</div>
+{% endblock %}

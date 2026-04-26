@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Apply for {{ career.title }} | Ethyra Global{% endblock %}
+{% block main_class %}col-12{% endblock %}
+{% block main_style %}min-height: auto;{% endblock %}
+
+{% block content %}
+<section class="landing-hero py-6">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center mb-5">
+                    <span class="badge bg-white text-primary fw-semibold shadow-sm mb-3">Job Application</span>
+                    <h1 class="display-5 fw-bold lh-tight">Apply for {{ career.title }}</h1>
+                    <p class="lead text-secondary">Join our team and help advance clinical research excellence.</p>
+                </div>
+
+                <div class="card border-0 shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h5 class="fw-semibold">{{ career.title }}</h5>
+                                <p class="text-muted mb-1"><i class="bi bi-geo-alt me-2"></i>{{ career.location }}</p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <small class="text-muted">Posted {{ career.created_at|date:"M d, Y" }}</small>
+                            </div>
+                        </div>
+
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="{{ form.name.id_for_label }}" class="form-label fw-semibold">Full Name *</label>
+                                    {{ form.name }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.email.id_for_label }}" class="form-label fw-semibold">Email Address *</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="{{ form.phone.id_for_label }}" class="form-label fw-semibold">Phone Number</label>
+                                    {{ form.phone }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Position</label>
+                                    <input type="text" class="form-control form-control-lg" value="{{ career.title }}" readonly>
+                                </div>
+                                <div class="col-12">
+                                    <label for="{{ form.cover_letter.id_for_label }}" class="form-label fw-semibold">Cover Letter *</label>
+                                    {{ form.cover_letter }}
+                                </div>
+                                <div class="col-12">
+                                    <label for="{{ form.resume.id_for_label }}" class="form-label fw-semibold">Resume (Optional)</label>
+                                    {{ form.resume }}
+                                    <div class="form-text">Accepted formats: PDF, DOC, DOCX (Max 5MB)</div>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5">
+                                    <i class="bi bi-send me-2"></i>Submit Application
+                                </button>
+                                <a href="{% url 'website:careers' %}" class="btn btn-outline-secondary btn-lg rounded-pill px-4">
+                                    Back to Careers
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

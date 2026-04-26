@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Delete Patient - EthyraTrials{% endblock %}
+{% block content %}
+<div class="card shadow-sm mt-5">
+    <div class="card-header"><h4>Delete patient</h4></div>
+    <div class="card-body">
+        <p>Confirm removal of <strong>{{ object.name }}</strong> from the system.</p>
+        <form method="post">{% csrf_token %}
+            <button class="btn btn-danger">Delete patient</button>
+            <a class="btn btn-secondary" href="{% url 'patients:list' %}">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
