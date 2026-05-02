@@ -12,4 +12,5 @@ urlpatterns = [
     path('careers/apply/<int:career_id>/', views.JobApplicationView.as_view(), name='job_application'),
     path('insights/', views.InsightsPageView.as_view(), name='insights'),
     path('contact/', views.ContactPageView.as_view(), name='contact'),
+    path('services/<slug:slug>/', views.service_detail, name='service_detail'),
 ]

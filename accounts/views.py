@@ -17,6 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
@@ -35,7 +36,9 @@ class RegisterView(View):
     def post(self, request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.role = 'user'
+            user.save()
             messages.success(request, f'Account created successfully. Please log in with {user.email}.')
             return redirect('accounts:login')
         messages.error(request, 'Please fix the errors below.')
@@ -47,26 +50,44 @@ class LoginView(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('dashboard:home')
+            return self.redirect_user(request.user)
+        
         form = UserLoginForm()
         return render(request, self.template_name, {'form': form})
 
     @method_decorator(never_cache)
     def post(self, request):
         form = UserLoginForm(request, data=request.POST)
+
         if form.is_valid():
-            # ✅ FIXED: Use form.get_user() instead of redundant authenticate()
-            # AuthenticationForm.is_valid() already authenticates the user
             user = form.get_user()
             login(request, user)
+
             messages.success(request, f'Welcome back, {user.name}!')
-            next_url = request.GET.get('next', 'dashboard:home')
-            return redirect(next_url)
-        else:
-            # ✅ Generic error message for security (don't reveal if email exists)
-            messages.error(request, 'Invalid email or password.')
-        
+
+            # ✅ Handle next URL safely
+            next_url = request.POST.get('next') or request.GET.get('next')
+            if next_url and url_has_allowed_host_and_scheme(
+                next_url,
+                allowed_hosts={request.get_host()}
+            ):
+                return redirect(next_url)
+
+            return self.redirect_user(user)
+
+        messages.error(request, 'Invalid email or password.')
         return render(request, self.template_name, {'form': form})
+
+    # 🎯 CENTRALIZED REDIRECT LOGIC
+    def redirect_user(self, user):
+        if user.is_superuser or user.is_staff:
+            return redirect('dashboard:admin_home')
+
+        if user.role == 'researcher':
+            return redirect('dashboard:research_home')
+
+        # ✅ NORMAL USER → WEBSITE HOMEPAGE
+        return redirect('website:home')   # <-- IMPORTANT CHANGE
 
 
 class LogoutView(LoginRequiredMixin, View):
@@ -83,10 +104,7 @@ class CustomPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('accounts:password_reset_done')
 
     def form_valid(self, form):
-        # ✅ Don't reveal if email exists (security best practice)
-        response = super().form_valid(form)
-        messages.success(self.request, 'If an account exists with this email, you will receive password reset instructions.')
-        return response
+        return super().form_valid(form)
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):

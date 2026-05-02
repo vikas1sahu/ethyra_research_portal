@@ -1,15 +1,15 @@
 import io
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from openpyxl import Workbook
+from accounts.mixins import StaffRequiredMixin
 from studies.models import Study
 from patients.models import Patient
 
 
-class ReportDashboardView(LoginRequiredMixin, TemplateView):
+class ReportDashboardView(StaffRequiredMixin, TemplateView):
     template_name = 'reports/reports.html'
 
     def get_context_data(self, **kwargs):
@@ -19,7 +19,7 @@ class ReportDashboardView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class ExportPdfView(LoginRequiredMixin, TemplateView):
+class ExportPdfView(StaffRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         buffer = io.BytesIO()
         p = canvas.Canvas(buffer, pagesize=letter)
@@ -41,7 +41,7 @@ class ExportPdfView(LoginRequiredMixin, TemplateView):
         return HttpResponse(buffer, content_type='application/pdf')
 
 
-class ExportExcelView(LoginRequiredMixin, TemplateView):
+class ExportExcelView(StaffRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
         workbook = Workbook()
         sheet = workbook.active

@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
+from django.shortcuts import render
 from django.contrib import messages
 from .forms import ContactForm, JobApplicationForm
 from admin_panel.models import Career
@@ -16,6 +17,33 @@ class ServicesPageView(TemplateView):
 
 class TrialsPageView(TemplateView):
     template_name = 'website/trials.html'
+
+def service_detail(request, slug):
+    services = {
+        "site-management": {
+            "title": "Site Management",
+            "description": "End-to-end site activation, monitoring, and performance optimization."
+        },
+        "patient-recruitment": {
+            "title": "Patient Recruitment",
+            "description": "Targeted outreach and retention strategies to accelerate enrollment."
+        },
+        "regulatory-compliance": {
+            "title": "Regulatory Compliance",
+            "description": "GCP-compliant documentation, audits, and risk mitigation."
+        },
+        "data-management": {
+            "title": "Data Management",
+            "description": "Secure, accurate, and analytics-ready data pipelines."
+        }
+    }
+
+    service = services.get(slug)
+
+    if not service:
+        return render(request, "404.html")
+
+    return render(request, "services/service_detail.html", {"service": service})
 
 class CareersPageView(TemplateView):
     template_name = 'website/careers.html'

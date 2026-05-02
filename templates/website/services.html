@@ -5,60 +5,175 @@
 {% block main_style %}min-height: auto;{% endblock %}
 
 {% block content %}
+
+<!-- HERO -->
 <section class="landing-hero py-6">
     <div class="container py-5">
         <div class="row align-items-center gx-5">
             <div class="col-lg-7">
-                <span class="badge bg-white text-primary fw-semibold shadow-sm mb-3">Clinical Research Services</span>
-                <h1 class="display-5 fw-bold lh-tight">A premium service portfolio for every study phase.</h1>
-                <p class="lead text-secondary mb-4">From site management to regulatory compliance and data oversight, our teams deliver seamless execution with measurable performance.</p>
-                <a href="/trials/" class="btn btn-primary btn-lg rounded-pill shadow-sm">View Trials</a>
+                <span class="badge bg-white text-primary fw-semibold shadow-sm mb-3">
+                    Clinical Research Services
+                </span>
+
+                <h1 class="display-5 fw-bold lh-tight">
+                    End-to-end clinical trial execution with measurable outcomes.
+                </h1>
+
+                <p class="lead text-secondary mb-4">
+                    From feasibility to regulatory submission, Ethyra Global delivers faster,
+                    compliant, and patient-centric clinical research solutions.
+                </p>
+
+                <div class="d-flex gap-3">
+                    <a href="/trials/" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                        View Trials
+                    </a>
+                    <a href="/contact/" class="btn btn-outline-primary btn-lg rounded-pill">
+                        Schedule Consultation
+                    </a>
+                </div>
             </div>
+
             <div class="col-lg-5 mt-5 mt-lg-0">
                 <div class="p-5 rounded-5 shadow-lg bg-white">
                     <h5 class="fw-semibold mb-3">What we offer</h5>
                     <ul class="list-unstyled text-muted">
-                        <li class="mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Study feasibility and operational planning</li>
-                        <li class="mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Site activation and monitoring</li>
-                        <li class="mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Patient recruitment and retention</li>
-                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Regulatory submissions and data governance</li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Study feasibility & operational planning
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Rapid site activation & real-time monitoring
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Patient recruitment & retention strategies
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                            Regulatory submissions & data governance
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+<!-- SERVICES -->
 <section class="container py-6">
     <div class="row g-4">
+
+        <!-- Site Management -->
         <div class="col-md-6 col-xl-3">
-            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
-                <div class="icon-wrapper mb-3"><i class="bi bi-building-up"></i></div>
-                <h5>Site Management</h5>
-                <p class="text-muted">End-to-end activation, monitoring, and performance management.</p>
-            </div>
+            <a href="{% url 'website:service_detail' 'site-management' %}" class="text-decoration-none text-dark">
+                <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                    <div class="icon-wrapper mb-3"><i class="bi bi-building-up"></i></div>
+                    <h5>Site Management</h5>
+                    <p class="text-muted">
+                        Accelerate site activation by up to 30% with real-time monitoring
+                        and performance optimization.
+                    </p>
+                    <span class="text-primary fw-semibold">Learn more →</span>
+                </div>
+            </a>
         </div>
+
+        <!-- Patient Recruitment -->
         <div class="col-md-6 col-xl-3">
-            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
-                <div class="icon-wrapper mb-3"><i class="bi bi-people-fill"></i></div>
-                <h5>Patient Recruitment</h5>
-                <p class="text-muted">Targeted outreach, retention planning, and compassionate support.</p>
-            </div>
+            <a href="{% url 'website:service_detail' 'patient-recruitment' %}" class="text-decoration-none text-dark">
+                <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                    <div class="icon-wrapper mb-3"><i class="bi bi-people-fill"></i></div>
+                    <h5>Patient Recruitment</h5>
+                    <p class="text-muted">
+                        Reduce enrollment timelines with targeted outreach and
+                        patient-first retention strategies.
+                    </p>
+                    <span class="text-primary fw-semibold">Learn more →</span>
+                </div>
+            </a>
         </div>
+
+        <!-- Regulatory Compliance -->
         <div class="col-md-6 col-xl-3">
-            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
-                <div class="icon-wrapper mb-3"><i class="bi bi-shield-lock-fill"></i></div>
-                <h5>Regulatory Compliance</h5>
-                <p class="text-muted">GCP-aligned documentation, audits, and risk mitigation.</p>
-            </div>
+            <a href="{% url 'website:service_detail' 'regulatory-compliance' %}" class="text-decoration-none text-dark">
+                <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                    <div class="icon-wrapper mb-3"><i class="bi bi-shield-lock-fill"></i></div>
+                    <h5>Regulatory Compliance</h5>
+                    <p class="text-muted">
+                        Ensure audit-ready documentation with GCP-compliant workflows
+                        and proactive risk mitigation.
+                    </p>
+                    <span class="text-primary fw-semibold">Learn more →</span>
+                </div>
+            </a>
         </div>
+
+        <!-- Data Management -->
         <div class="col-md-6 col-xl-3">
-            <div class="service-card p-4 rounded-4 h-100 shadow-sm">
-                <div class="icon-wrapper mb-3"><i class="bi bi-journal-text"></i></div>
-                <h5>Data Management</h5>
-                <p class="text-muted">Secure data capture, cleaning, and analytics readiness.</p>
-            </div>
+            <a href="{% url 'website:service_detail' 'data-management' %}" class="text-decoration-none text-dark">
+                <div class="service-card p-4 rounded-4 h-100 shadow-sm">
+                    <div class="icon-wrapper mb-3"><i class="bi bi-journal-text"></i></div>
+                    <h5>Data Management</h5>
+                    <p class="text-muted">
+                        Secure, accurate, and analytics-ready data pipelines for faster
+                        insights and decision-making.
+                    </p>
+                    <span class="text-primary fw-semibold">Learn more →</span>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- TRUST / STATS -->
+<section class="container py-5">
+    <div class="row text-center g-4">
+
+        <div class="col-md-3">
+            <h3 class="fw-bold text-primary">50+</h3>
+            <p class="text-muted">Active Trials</p>
+        </div>
+
+        <div class="col-md-3">
+            <h3 class="fw-bold text-primary">10,000+</h3>
+            <p class="text-muted">Patients Recruited</p>
+        </div>
+
+        <div class="col-md-3">
+            <h3 class="fw-bold text-primary">25+</h3>
+            <p class="text-muted">Therapeutic Areas</p>
+        </div>
+
+        <div class="col-md-3">
+            <h3 class="fw-bold text-primary">100%</h3>
+            <p class="text-muted">GCP Compliance</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h2 class="fw-bold mb-3">Why choose Ethyra Global?</h2>
+            <p class="text-muted">
+                We combine operational excellence, regulatory expertise, and
+                patient-centric strategies to deliver faster and more reliable clinical outcomes.
+            </p>
+        </div>
+
+        <div class="col-lg-6">
+            <ul class="list-unstyled text-muted">
+                <li class="mb-2">✔ Faster study execution timelines</li>
+                <li class="mb-2">✔ Patient-first recruitment approach</li>
+                <li class="mb-2">✔ Regulatory-driven processes</li>
+                <li>✔ Data-backed performance tracking</li>
+            </ul>
         </div>
     </div>
 </section>
+
 {% endblock %}

@@ -6,10 +6,11 @@ from django.views.generic import CreateView, DeleteView, DetailView, ListView, U
 from accounts.mixins import StaffRequiredMixin
 from .forms import PatientForm
 from .models import Patient
+from django.shortcuts import redirect
 from core.models import ActivityLog, Notification
 
 
-class PatientListView(LoginRequiredMixin, ListView):
+class PatientListView(StaffRequiredMixin, ListView):
     model = Patient
     template_name = 'patients/patient_list.html'
     paginate_by = 12
@@ -38,25 +39,41 @@ class PatientListView(LoginRequiredMixin, ListView):
         return super().render_to_response(context, **response_kwargs)
 
 
-class PatientCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
+class PatientCreateView(StaffRequiredMixin, CreateView):
     model = Patient
     form_class = PatientForm
     template_name = 'patients/patient_form.html'
     success_url = reverse_lazy('patients:list')
 
+    def handle_no_permission(self):
+        messages.error(self.request, "🚫 You are not allowed to create patients.")
+        return redirect('patients:list')
+
     def form_valid(self, form):
         response = super().form_valid(form)
-        ActivityLog.objects.create(actor=self.request.user, action='Created patient', target=self.object.name)
-        Notification.objects.create(user=self.request.user, title='Patient record created', message=f'{self.object.name} was added to {self.object.study}')
+        ActivityLog.objects.create(
+            actor=self.request.user,
+            action='Created patient',
+            target=self.object.name
+        )
+        Notification.objects.create(
+            user=self.request.user,
+            title='Patient record created',
+            message=f'{self.object.name} was added to {self.object.study}'
+        )
         messages.success(self.request, 'Patient added successfully.')
         return response
 
 
-class PatientUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+class PatientUpdateView(StaffRequiredMixin, UpdateView):
     model = Patient
     form_class = PatientForm
     template_name = 'patients/patient_form.html'
     success_url = reverse_lazy('patients:list')
+
+    def handle_no_permission(self):
+        messages.error(self.request, "🚫 You are not allowed to update patients.")
+        return redirect('patients:list')
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -65,18 +82,22 @@ class PatientUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
         return response
 
 
-class PatientDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+class PatientDeleteView(StaffRequiredMixin, DeleteView):
     model = Patient
     template_name = 'patients/patient_confirm_delete.html'
     success_url = reverse_lazy('patients:list')
 
-    def delete(self, request, *args, **kwargs):
+    def handle_no_permission(self):
+        messages.error(self.request, "🚫 You are not allowed to delete patients.")
+        return redirect('patients:list')
+
+    def form_valid(self, form):
         patient = self.get_object()
-        ActivityLog.objects.create(actor=request.user, action='Deleted patient', target=patient.name)
-        messages.success(request, 'Patient removed successfully.')
-        return super().delete(request, *args, **kwargs)
+        ActivityLog.objects.create(actor=self.request.user, action='Deleted patient', target=patient.name)
+        messages.success(self.request, 'Patient removed successfully.')
+        return super().form_valid(form)
 
 
-class PatientDetailView(LoginRequiredMixin, DetailView):
+class PatientDetailView(StaffRequiredMixin, DetailView):
     model = Patient
     template_name = 'patients/patient_detail.html'

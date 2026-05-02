@@ -1,20 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.db.models import Count
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from accounts.decorators import admin_required
 from accounts.mixins import StaffRequiredMixin
 from studies.models import Study
 from patients.models import Patient
 from .models import Application, Career, BlogPost, ContactMessage
 from .forms import StudyForm, CareerForm, BlogPostForm, ContactMessageForm
 
-@method_decorator(login_required, name='dispatch')
-@method_decorator(user_passes_test(lambda u: u.is_staff), name='dispatch')
+@method_decorator(admin_required, name='dispatch')
 class AdminDashboardView(View):
     template_name = 'admin_panel/dashboard.html'
 
@@ -54,53 +52,53 @@ class TrialsListView(StaffRequiredMixin, ListView):
     template_name = 'admin_panel/trials_list.html'
     context_object_name = 'trials'
 
-class TrialCreateView(LoginRequiredMixin, CreateView):
+class TrialCreateView(StaffRequiredMixin, CreateView):
     model = Study
     form_class = StudyForm
     template_name = 'admin_panel/trial_form.html'
     success_url = reverse_lazy('admin_panel:trials_list')
 
-class TrialUpdateView(LoginRequiredMixin, UpdateView):
+class TrialUpdateView(StaffRequiredMixin, UpdateView):
     model = Study
     form_class = StudyForm
     template_name = 'admin_panel/trial_form.html'
     success_url = reverse_lazy('admin_panel:trials_list')
 
-class TrialDeleteView(LoginRequiredMixin, DeleteView):
+class TrialDeleteView(StaffRequiredMixin, DeleteView):
     model = Study
     template_name = 'admin_panel/trial_confirm_delete.html'
     success_url = reverse_lazy('admin_panel:trials_list')
 
 # Careers Views
-class CareersListView(LoginRequiredMixin, ListView):
+class CareersListView(StaffRequiredMixin, ListView):
     model = Career
     template_name = 'admin_panel/careers_list.html'
     context_object_name = 'careers'
 
-class CareerCreateView(LoginRequiredMixin, CreateView):
+class CareerCreateView(StaffRequiredMixin, CreateView):
     model = Career
     form_class = CareerForm
     template_name = 'admin_panel/career_form.html'
     success_url = reverse_lazy('admin_panel:careers_list')
 
-class CareerUpdateView(LoginRequiredMixin, UpdateView):
+class CareerUpdateView(StaffRequiredMixin, UpdateView):
     model = Career
     form_class = CareerForm
     template_name = 'admin_panel/career_form.html'
     success_url = reverse_lazy('admin_panel:careers_list')
 
-class CareerDeleteView(LoginRequiredMixin, DeleteView):
+class CareerDeleteView(StaffRequiredMixin, DeleteView):
     model = Career
     template_name = 'admin_panel/career_confirm_delete.html'
     success_url = reverse_lazy('admin_panel:careers_list')
 
 # Blog Views
-class BlogListView(LoginRequiredMixin, ListView):
+class BlogListView(StaffRequiredMixin, ListView):
     model = BlogPost
     template_name = 'admin_panel/blog_list.html'
     context_object_name = 'posts'
 
-class BlogCreateView(LoginRequiredMixin, CreateView):
+class BlogCreateView(StaffRequiredMixin, CreateView):
     model = BlogPost
     form_class = BlogPostForm
     template_name = 'admin_panel/blog_form.html'
@@ -110,35 +108,35 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class BlogUpdateView(LoginRequiredMixin, UpdateView):
+class BlogUpdateView(StaffRequiredMixin, UpdateView):
     model = BlogPost
     form_class = BlogPostForm
     template_name = 'admin_panel/blog_form.html'
     success_url = reverse_lazy('admin_panel:blog_list')
 
-class BlogDeleteView(LoginRequiredMixin, DeleteView):
+class BlogDeleteView(StaffRequiredMixin, DeleteView):
     model = BlogPost
     template_name = 'admin_panel/blog_confirm_delete.html'
     success_url = reverse_lazy('admin_panel:blog_list')
 
 # Messages Views
-class MessagesListView(LoginRequiredMixin, ListView):
+class MessagesListView(StaffRequiredMixin, ListView):
     model = ContactMessage
     template_name = 'admin_panel/messages_list.html'
     context_object_name = 'messages'
 
-class MessageDeleteView(LoginRequiredMixin, DeleteView):
+class MessageDeleteView(StaffRequiredMixin, DeleteView):
     model = ContactMessage
     template_name = 'admin_panel/message_confirm_delete.html'
     success_url = reverse_lazy('admin_panel:messages_list')
 
 # Applications Views
-class ApplicationsListView(LoginRequiredMixin, ListView):
+class ApplicationsListView(StaffRequiredMixin, ListView):
     model = Application
     template_name = 'admin_panel/applications_list.html'
     context_object_name = 'applications'
 
-class ApplicationDeleteView(LoginRequiredMixin, DeleteView):
+class ApplicationDeleteView(StaffRequiredMixin, DeleteView):
     model = Application
     template_name = 'admin_panel/application_confirm_delete.html'
     success_url = reverse_lazy('admin_panel:applications_list')

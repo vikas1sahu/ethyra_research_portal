@@ -9,7 +9,7 @@ from .models import Study
 from core.models import ActivityLog, Notification
 
 
-class StudyListView(LoginRequiredMixin, ListView):
+class StudyListView(StaffRequiredMixin, ListView):
     model = Study
     template_name = 'studies/study_list.html'
     paginate_by = 10
@@ -32,7 +32,7 @@ class StudyListView(LoginRequiredMixin, ListView):
         return super().render_to_response(context, **response_kwargs)
 
 
-class StudyCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
+class StudyCreateView(StaffRequiredMixin, CreateView):
     model = Study
     form_class = StudyForm
     template_name = 'studies/study_form.html'
@@ -47,7 +47,7 @@ class StudyCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
         return response
 
 
-class StudyUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
+class StudyUpdateView(StaffRequiredMixin, UpdateView):
     model = Study
     form_class = StudyForm
     template_name = 'studies/study_form.html'
@@ -60,7 +60,7 @@ class StudyUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
         return response
 
 
-class StudyDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
+class StudyDeleteView(StaffRequiredMixin, DeleteView):
     model = Study
     template_name = 'studies/study_confirm_delete.html'
     success_url = reverse_lazy('studies:list')
@@ -72,6 +72,6 @@ class StudyDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
         return super().delete(request, *args, **kwargs)
 
 
-class StudyDetailView(LoginRequiredMixin, DetailView):
+class StudyDetailView(StaffRequiredMixin, DetailView):
     model = Study
     template_name = 'studies/study_detail.html'

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ service.title }} | Ethyra{% endblock %}
+
+<!-- 🔥 IMPORTANT FIX -->
+{% block main_class %}col-12{% endblock %}
+{% block main_style %}min-height: auto;{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="landing-hero py-5">
+    <div class="container py-5">
+        <div class="row gx-5 align-items-center">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6">
+
+                <span class="badge bg-white text-primary shadow-sm mb-3 px-3 py-2">
+                    Our Services
+                </span>
+
+                <h1 class="display-5 fw-bold mb-3">
+                    {{ service.title }}
+                </h1>
+
+                <p class="lead text-secondary mb-4">
+                    {{ service.description }}
+                </p>
+
+                <a href="{% url 'website:contact' %}" 
+                   class="btn btn-primary rounded-pill px-4 py-2 shadow-sm">
+                    Get Consultation
+                </a>
+
+            </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-lg-6 mt-5 mt-lg-0">
+
+                <div class="service-hero-bg p-4 p-lg-5">
+
+                    <div class="row g-4">
+
+                        <!-- WHY CARD -->
+                        <div class="col-12">
+                            <div class="service-highlight-card p-4 shadow-sm">
+                                <h5 class="fw-semibold mb-3">Why choose this service</h5>
+
+                                <ul class="list-unstyled text-muted mb-0">
+                                    <li class="mb-2">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Faster execution
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Regulatory compliance
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Expert-driven strategy
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                                        Scalable solutions
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- FEATURE CARDS -->
+
+                        <!-- Strategy -->
+                        <div class="col-md-4">
+                            <div class="service-card p-4 shadow-sm text-center">
+                                <div class="icon-wrapper mb-2">
+                                    <i class="bi bi-diagram-3"></i>
+                                </div>
+                                <h6>Strategy</h6>
+                                <p class="text-muted small mb-0">
+                                    Data-driven planning tailored to your clinical goals.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Execution -->
+                        <div class="col-md-4">
+                            <div class="service-card p-4 shadow-sm text-center">
+                                <div class="icon-wrapper mb-2">
+                                    <i class="bi bi-gear-wide-connected"></i>
+                                </div>
+                                <h6>Execution</h6>
+                                <p class="text-muted small mb-0">
+                                    Seamless implementation with expert oversight.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Optimization -->
+                        <div class="col-md-4">
+                            <div class="service-card p-4 shadow-sm text-center">
+                                <div class="icon-wrapper mb-2">
+                                    <i class="bi bi-graph-up-arrow"></i>
+                                </div>
+                                <h6>Optimization</h6>
+                                <p class="text-muted small mb-0">
+                                    Continuous improvement for better outcomes.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
