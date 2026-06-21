@@ -1,1 +1,0 @@
-# EthyraTrials project package
