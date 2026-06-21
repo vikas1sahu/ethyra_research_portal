@@ -1,0 +1,304 @@
+/* ===================================
+   ETHYRA GLOBAL RESEARCH
+   RESPONSIVE STYLES
+=================================== */
+
+/* Large Devices */
+@media (max-width: 1200px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .features-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+/* Tablet Devices */
+@media (max-width: 992px){
+
+    .navbar{
+        height:75px;
+    }
+
+    .menu-toggle{
+        display:block;
+        color:var(--primary);
+    }
+
+    .nav-actions{
+        display:none;
+    }
+
+    .nav-menu{
+        position:absolute;
+        top:75px;
+        left:0;
+        width:100%;
+        background:#fff;
+        flex-direction:column;
+        align-items:center;
+        gap:0;
+        overflow:hidden;
+        max-height:0;
+        transition:.4s ease;
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .nav-menu.active{
+        max-height:500px;
+        padding:20px 0;
+    }
+
+    .nav-menu li{
+        width:100%;
+        text-align:center;
+    }
+
+    .nav-menu a{
+        display:block;
+        padding:15px;
+        width:100%;
+    }
+
+    .hero{
+        padding:80px 0;
+    }
+
+    .hero h1{
+        font-size:46px;
+    }
+
+    .section-header h2{
+        font-size:34px;
+    }
+
+    .cta-box h2{
+        font-size:34px;
+    }
+
+}
+
+/* Small Tablets */
+@media (max-width: 768px){
+
+    section{
+        padding:70px 0;
+    }
+
+    .hero{
+        text-align:center;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr;
+    }
+
+    .features-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .section-header{
+        margin-bottom:45px;
+    }
+
+    .section-header h2{
+        font-size:30px;
+    }
+
+    .service-card,
+    .feature-card,
+    .stat-card{
+        padding:28px;
+    }
+
+    .hero-card{
+        padding:30px;
+    }
+
+    .cta-box h2{
+        font-size:30px;
+    }
+
+}
+
+/* Mobile Devices */
+@media (max-width: 576px){
+
+    .container{
+        width:94%;
+    }
+
+    .navbar{
+        height:70px;
+    }
+
+    .logo img{
+        height:48px;
+    }
+
+    .nav-menu{
+        top:70px;
+    }
+
+    .hero{
+        padding:60px 0;
+    }
+
+    .hero h1{
+        font-size:32px;
+        line-height:1.25;
+    }
+
+    .hero-badge{
+        font-size:13px;
+    }
+
+    .btn{
+        width:100%;
+        padding:14px 20px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .section-header h2{
+        font-size:26px;
+    }
+
+    .stat-card h3{
+        font-size:32px;
+    }
+
+    .service-icon{
+        width:60px;
+        height:60px;
+        font-size:26px;
+    }
+
+    .feature-card i{
+        font-size:34px;
+    }
+
+    .cta-box h2{
+        font-size:26px;
+    }
+
+    .cta-box p{
+        font-size:15px;
+    }
+
+    .footer{
+        padding-top:50px;
+    }
+
+    .footer-bottom{
+        font-size:14px;
+    }
+
+}
+
+/* Extra Small Devices */
+@media (max-width: 400px){
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .section-header h2{
+        font-size:24px;
+    }
+
+    .cta-box h2{
+        font-size:24px;
+    }
+
+    .service-card,
+    .feature-card,
+    .hero-card,
+    .stat-card{
+        padding:22px;
+    }
+
+}
+
+/* Landscape Phones */
+@media (max-height: 500px) and (orientation: landscape){
+
+    .hero{
+        padding:40px 0;
+    }
+
+    .nav-menu.active{
+        max-height:300px;
+        overflow-y:auto;
+    }
+
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation:none !important;
+        transition:none !important;
+        scroll-behavior:auto !important;
+    }
+
+}
+
+/* High Resolution Screens */
+@media (min-width: 1600px){
+
+    .container{
+        max-width:1400px;
+    }
+
+    .hero h1{
+        font-size:64px;
+    }
+
+    .section-header h2{
+        font-size:48px;
+    }
+
+}
