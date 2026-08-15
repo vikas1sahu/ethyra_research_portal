@@ -302,3 +302,89 @@
     }
 
 }
+
+/* =====================
+   FOUNDERS — RESPONSIVE
+===================== */
+
+@media (max-width: 768px){
+
+    .founders-grid{
+        grid-template-columns:1fr;
+        max-width:460px;
+    }
+
+    .founder-photo-wrap{
+        aspect-ratio:1/1;
+    }
+
+}
+
+/* =====================
+   FORM ROW — RESPONSIVE
+===================== */
+
+@media (max-width: 768px){
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .contact-form-wrap{
+        padding:30px 22px;
+    }
+
+}
+
+@media (max-width: 576px){
+
+    .contact-form-wrap{
+        padding:24px 16px;
+        border-radius:12px;
+    }
+
+}
+
+/* =====================
+   AI ASSISTANT — RESPONSIVE
+===================== */
+
+@media (max-width: 768px){
+
+    .ethyra-ai-panel{
+        width:calc(100vw - 24px);
+        right:12px;
+        left:12px;
+        bottom:140px;
+        max-height:calc(100vh - 180px);
+        border-radius:16px;
+    }
+
+    .ethyra-ai-fab{
+        bottom:80px;
+        right:16px;
+        width:52px;
+        height:52px;
+        font-size:22px;
+    }
+
+    .ethyra-ai-fab-tooltip{
+        display:none;
+    }
+
+}
+
+@media (max-width: 400px){
+
+    .ethyra-ai-panel{
+        width:calc(100vw - 16px);
+        right:8px;
+        left:8px;
+    }
+
+    .ethyra-ai-quick-btn{
+        font-size:12px;
+        padding:5px 10px;
+    }
+
+}

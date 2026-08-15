@@ -1,13 +1,12 @@
 /* ===================================
    ETHYRA GLOBAL RESEARCH
    CONTACT & CAREER FORM VALIDATION
+   FormSubmit Standard HTML POST Integration
 =================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-
     initializeContactForm();
     initializeCareerForm();
-
 });
 
 /* ==========================
@@ -15,97 +14,55 @@ document.addEventListener("DOMContentLoaded", () => {
 ========================== */
 
 function initializeContactForm() {
-
-    const form =
-        document.getElementById("contactForm");
-
+    const form = document.getElementById("contactForm");
     if (!form) return;
 
+    const submitBtn = form.querySelector("button[type='submit']");
+
     form.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
         clearErrors();
 
         let isValid = true;
 
-        const name =
-            document.getElementById("name");
+        const name   = document.getElementById("name");
+        const email  = document.getElementById("email");
+        const phone  = document.getElementById("phone");
+        const message = document.getElementById("message");
 
-        const email =
-            document.getElementById("email");
-
-        const phone =
-            document.getElementById("phone");
-
-        const message =
-            document.getElementById("message");
-
-        /* Name Validation */
-
-        if (name.value.trim().length < 3) {
-
-            showError(
-                name,
-                "Please enter a valid full name."
-            );
-
+        /* ---- Validation ---- */
+        if (!name || name.value.trim().length < 3) {
+            if (name) showError(name, "Please enter a valid full name (min. 3 characters).");
             isValid = false;
-
         }
 
-        /* Email Validation */
-
-        if (!validateEmail(email.value)) {
-
-            showError(
-                email,
-                "Please enter a valid email address."
-            );
-
+        if (!email || !validateEmail(email.value)) {
+            if (email) showError(email, "Please enter a valid email address.");
             isValid = false;
-
         }
 
-        /* Phone Validation */
-
-        if (!validatePhone(phone.value)) {
-
-            showError(
-                phone,
-                "Please enter a valid phone number."
-            );
-
+        if (!phone || !validatePhone(phone.value)) {
+            if (phone) showError(phone, "Please enter a valid phone number.");
             isValid = false;
-
         }
 
-        /* Message Validation */
-
-        if (message.value.trim().length < 10) {
-
-            showError(
-                message,
-                "Message must contain at least 10 characters."
-            );
-
+        if (!message || message.value.trim().length < 10) {
+            if (message) showError(message, "Please enter a message (min. 10 characters).");
             isValid = false;
-
         }
 
-        if (isValid) {
-
-            showSuccess(
-                form,
-                "Thank you! Your message has been submitted successfully."
-            );
-
-            form.reset();
-
+        if (!isValid) {
+            // STOP SUBMISSION if validation fails
+            e.preventDefault();
+            return;
         }
 
+        // If validation succeeds: ALLOW NORMAL FORM SUBMISSION
+        // Set temporary loading state on button right before browser POST submission
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span class="btn-spinner" aria-hidden="true"></span>Sending...`;
+        }
     });
-
 }
 
 /* ==========================
@@ -113,371 +70,130 @@ function initializeContactForm() {
 ========================== */
 
 function initializeCareerForm() {
-
-    const form =
-        document.getElementById("careerForm");
-
+    const form = document.getElementById("careerForm");
     if (!form) return;
 
+    const submitBtn = form.querySelector("button[type='submit']");
+
     form.addEventListener("submit", function (e) {
-
-        e.preventDefault();
-
         clearErrors();
 
         let isValid = true;
 
-        const name =
-            document.getElementById("careerName");
+        const name     = document.getElementById("careerName");
+        const email    = document.getElementById("careerEmail");
+        const phone    = document.getElementById("careerPhone");
+        const position = document.getElementById("position");
+        const resume   = document.getElementById("resume");
 
-        const email =
-            document.getElementById("careerEmail");
-
-        const phone =
-            document.getElementById("careerPhone");
-
-        const position =
-            document.getElementById("position");
-
-        const resume =
-            document.getElementById("resume");
-
-        /* Name */
-
-        if (name.value.trim().length < 3) {
-
-            showError(
-                name,
-                "Please enter your full name."
-            );
-
+        /* ---- Validation ---- */
+        if (!name || name.value.trim().length < 3) {
+            if (name) showError(name, "Please enter your full name.");
             isValid = false;
-
         }
 
-        /* Email */
-
-        if (!validateEmail(email.value)) {
-
-            showError(
-                email,
-                "Please enter a valid email."
-            );
-
+        if (!email || !validateEmail(email.value)) {
+            if (email) showError(email, "Please enter a valid email address.");
             isValid = false;
-
         }
 
-        /* Phone */
-
-        if (!validatePhone(phone.value)) {
-
-            showError(
-                phone,
-                "Please enter a valid phone number."
-            );
-
+        if (!phone || !validatePhone(phone.value)) {
+            if (phone) showError(phone, "Please enter a valid phone number.");
             isValid = false;
-
         }
 
-        /* Position */
-
-        if (position.value === "") {
-
-            showError(
-                position,
-                "Please select a position."
-            );
-
+        if (!position || position.value === "") {
+            if (position) showError(position, "Please select a position.");
             isValid = false;
-
         }
 
-        /* Resume */
-
-        if (!resume.files.length) {
-
-            showError(
-                resume,
-                "Please upload your resume."
-            );
-
+        if (!resume || !resume.files.length) {
+            if (resume) showError(resume, "Please upload your resume (PDF / DOC / DOCX, max 5 MB).");
             isValid = false;
-
         } else {
-
-            const file =
-                resume.files[0];
-
+            const file = resume.files[0];
             const allowedTypes = [
                 "application/pdf",
                 "application/msword",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             ];
-
             if (!allowedTypes.includes(file.type)) {
-
-                showError(
-                    resume,
-                    "Resume must be PDF or DOC/DOCX."
-                );
-
+                showError(resume, "Resume must be PDF or DOC/DOCX format.");
                 isValid = false;
-
             }
-
-            const maxSize =
-                5 * 1024 * 1024;
-
-            if (file.size > maxSize) {
-
-                showError(
-                    resume,
-                    "Maximum file size is 5MB."
-                );
-
+            if (file.size > 5 * 1024 * 1024) {
+                showError(resume, "Maximum file size is 5 MB.");
                 isValid = false;
-
             }
-
         }
 
-        if (isValid) {
-
-            showSuccess(
-                form,
-                "Application submitted successfully. Our recruitment team will contact you shortly."
-            );
-
-            form.reset();
-
+        if (!isValid) {
+            e.preventDefault();
+            return;
         }
 
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span class="btn-spinner" aria-hidden="true"></span>Submitting...`;
+        }
     });
-
 }
 
 /* ==========================
-   EMAIL VALIDATION
+   HELPERS
 ========================== */
 
 function validateEmail(email) {
-
-    const pattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    return pattern.test(email);
-
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
-/* ==========================
-   PHONE VALIDATION
-========================== */
 
 function validatePhone(phone) {
-
-    const pattern =
-        /^[0-9+\-\s()]{10,15}$/;
-
-    return pattern.test(phone);
-
+    return /^[0-9+\-\s()]{10,15}$/.test(phone);
 }
-
-/* ==========================
-   SHOW ERROR
-========================== */
 
 function showError(element, message) {
-
-    const error =
-        document.createElement("div");
-
+    const error = document.createElement("div");
     error.className = "error";
-
+    error.setAttribute("role", "alert");
     error.innerText = message;
-
     element.parentElement.appendChild(error);
-
-    element.style.borderColor =
-        "#dc3545";
-
+    element.style.borderColor = "#dc3545";
+    element.setAttribute("aria-invalid", "true");
 }
-
-/* ==========================
-   CLEAR ERRORS
-========================== */
 
 function clearErrors() {
-
-    document
-        .querySelectorAll(".error")
-        .forEach(error => error.remove());
-
-    document
-        .querySelectorAll(
-            "input, textarea, select"
-        )
-        .forEach(field => {
-
-            field.style.borderColor = "";
-
-        });
-
+    document.querySelectorAll(".error").forEach(e => e.remove());
+    document.querySelectorAll("input, textarea, select").forEach(f => {
+        f.style.borderColor = "";
+        f.removeAttribute("aria-invalid");
+    });
 }
 
-/* ==========================
-   SUCCESS MESSAGE
-========================== */
-
-function showSuccess(form, message) {
-
-    const existing =
-        form.querySelector(".success-message");
-
-    if (existing) {
-
-        existing.remove();
-
+document.addEventListener("input", function (e) {
+    const field = e.target;
+    if (field.classList.contains("form-control")) {
+        field.style.borderColor = "";
+        field.removeAttribute("aria-invalid");
+        const errorEl = field.parentElement.querySelector(".error");
+        if (errorEl) errorEl.remove();
     }
+});
 
-    const success =
-        document.createElement("div");
-
-    success.className =
-        "success-message";
-
-    success.innerText =
-        message;
-
-    form.appendChild(success);
-
-    setTimeout(() => {
-
-        success.remove();
-
-    }, 6000);
-
-}
-
-/* ==========================
-   FILE NAME DISPLAY
-========================== */
-
-document.addEventListener(
-    "change",
-    function (event) {
-
-        if (
-            event.target &&
-            event.target.id === "resume"
-        ) {
-
-            const file =
-                event.target.files[0];
-
-            const fileLabel =
-                document.getElementById(
-                    "resumeFileName"
-                );
-
-            if (
-                file &&
-                fileLabel
-            ) {
-
-                fileLabel.textContent =
-                    file.name;
-
-            }
-
+document.addEventListener("change", function (e) {
+    if (e.target && e.target.id === "resume") {
+        const file = e.target.files[0];
+        const label = document.getElementById("resumeFileName");
+        if (file && label) {
+            label.textContent = file.name;
         }
-
     }
-);
+});
 
-/* ==========================
-   REAL-TIME VALIDATION
-========================== */
-
-document.addEventListener(
-    "input",
-    function (event) {
-
-        const field =
-            event.target;
-
-        if (
-            field.classList.contains(
-                "form-control"
-            )
-        ) {
-
-            field.style.borderColor =
-                "";
-
-        }
-
-    }
-);
-
-/* ==========================
-   CHARACTER COUNTER
-========================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        const message =
-            document.getElementById(
-                "message"
-            );
-
-        const counter =
-            document.getElementById(
-                "messageCounter"
-            );
-
-        if (
-            !message ||
-            !counter
-        ) return;
-
-        message.addEventListener(
-            "input",
-            () => {
-
-                counter.textContent =
-                    `${message.value.length} Characters`;
-
-            }
-        );
-
-    }
-);
-
-/* ==========================
-   FORM SUBMISSION SIMULATION
-========================== */
-
-function simulateSubmission(button) {
-
-    const originalText =
-        button.innerHTML;
-
-    button.disabled = true;
-
-    button.innerHTML =
-        "Submitting...";
-
-    setTimeout(() => {
-
-        button.disabled = false;
-
-        button.innerHTML =
-            originalText;
-
-    }, 2000);
-
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const message = document.getElementById("message");
+    const counter = document.getElementById("messageCounter");
+    if (!message || !counter) return;
+    message.addEventListener("input", () => {
+        counter.textContent = `${message.value.length} / 1000`;
+    });
+});
